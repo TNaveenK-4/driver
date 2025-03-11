@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: driver-microservice
+  labels:
+    app: driver
+spec:
+  replicas: 2  # Number of pods
+  selector:
+    matchLabels:
+      app: driver
+  template:
+    metadata:
+      labels:
+        app: driver
+    spec:
+      containers:
+        - name: driver-microservice
+          image: tnaveenk/driver-microservice:latest  # Your Docker image
+          ports:
+            - containerPort: 8080  # Change if needed
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+
